@@ -1,6 +1,7 @@
 # MuteMic
 AHK Script to mute your microphone when you press "Alt"
 
+
 Credits:
 
 [REQUIRED FOR COMPILING!]: Vista Audio Control Functions: https://www.autohotkey.com/board/topic/21984-vista-audio-control-functions/
