@@ -72,19 +72,16 @@ Extract_miconsound( micOnSoundPath)
 #SingleInstance, Force
 Menu, Tray, Icon, %micOnIconPath%
 disabledByTrayClick := false
-
+hotkeyPressed := false
 
 $~Alt::
-if disabledByTrayClick
+if (disabledByTrayClick || hotkeyPressed)
 	return
+hotkeyPressed := true
 Menu, Tray, Icon, %micOffIconPath%
 SoundSet, 1, MASTER, mute,%micId% 
 ;SoundGet, master_mute, , mute, %micId%
 SoundPlay, %micOffSoundPath%
-while (GetKeyState("Alt", "P"))
-{
-    Sleep, 10
-}
 return
 
 
@@ -92,10 +89,11 @@ return
 $~Alt Up::
 if disabledByTrayClick
 	return
+hotkeyPressed := false
 ;PlaySound(Sound1)
 SoundPlay, %micOnSoundPath%
 Sleep, 120
-if disabledByTrayClick
+if (disabledByTrayClick || hotkeyPressed)
 	return
 SoundSet, 0, MASTER, mute,%micId% 
 ;SoundGet, master_mute, , mute, %micId%
